@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4152744593721374}
   - component: {fileID: 198410131066959260}
   - component: {fileID: 199264038079462628}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ConfettiExplosionPurple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4713,7 +4713,7 @@ GameObject:
   - component: {fileID: 4931248852880448}
   - component: {fileID: 198240864072996638}
   - component: {fileID: 199239128951782150}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: competi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4745,7 +4745,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1620116211597326}
   serializedVersion: 8
-  lengthInSec: 3
+  lengthInSec: 15
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 3
@@ -9417,7 +9417,7 @@ GameObject:
   - component: {fileID: 4799108657537470}
   - component: {fileID: 198210570738496020}
   - component: {fileID: 199501902349161044}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ConfettiExplosionOrange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
