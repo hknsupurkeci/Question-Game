@@ -33,6 +33,7 @@ public class ProgressSlider : MonoBehaviour
         slider.value = maxTime;
         sayac = maxTime;
     }
+    public int SayacControl { get { return sayac; } set { sayac = value; } }
     public int questTime 
     { 
         set 
