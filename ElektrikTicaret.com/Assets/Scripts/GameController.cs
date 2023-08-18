@@ -58,13 +58,44 @@ public class GameController : MonoBehaviour
     public int maxQuestCount = 12;
     //leaderboard
     public LeaderBoard leaderboard;
-
+    //Sounds
+    [SerializeField] AudioSource baslatSound;
+    [SerializeField] AudioSource correctAnswer;
+    [SerializeField] AudioSource wrongAnswer;
+    //test kullanici verisi
+    private string[] names = { "Ali Rýza", "Uður Aslan", "Kemal Keskin", "Gürkan Güleþ", "Sümeyra Þaka", "Tuðba Uyumaz", "Elif Can Kuþ", "Hakan Süpürkeci", "Bilal Yakýcý", "Nazým Bardaklý" };
+    //Joker Controller
+    public JokerController jokerController;
+    //Gift object
+    [SerializeField] GameObject Gift;
     private void Start()
     {
+        DontDestroyOnLoad(leaderboard);
+        jokerController.cifteSans.GetComponent<Button>().interactable = false; // Butonun týklanabilirliðini kapatýr.
+
+        if (leaderboard.kullaniciBilgileri.Count == 0)
+        {
+            for (int i = 0; i < names.Length; i++)
+            {
+                User user = new User();
+                user.Name = names[i];
+                user.Score = Random.Range(1000, 5000);
+                leaderboard.kullaniciBilgileri.Add(user);
+            }
+        }
         ActiveUser = new User();
         startValueInput = adSoyadInputText.text;
         startScreenImage = backgroundPanel.GetComponent<Image>().sprite;
         defaultColorButtons = a.GetComponent<SVGImage>().color;
+    }
+    private void Update()
+    {
+        if(slider.slider.value <= 0 && slider.isGoing)
+        {
+            slider.isGoing = false;
+            wrongAnswer.Play();
+            Invoke("WrongAnswer", 3f);
+        }
     }
     public void StartGame()
     {
@@ -75,6 +106,8 @@ public class GameController : MonoBehaviour
         }
         else
         {
+            //sound
+            baslatSound.Play();
             //User bilgileri düzenleme
             GamePersonName.text = adSoyadInputText.text;
             //Sahne geçiþi
@@ -99,12 +132,13 @@ public class GameController : MonoBehaviour
         StartEkrani.SetActive(true);
 
         selectionQuests.Clear();
+
         User user = new User();
         user.Name = ActiveUser.Name;
         user.Score = ActiveUser.Score;
         leaderboard.kullaniciBilgileri.Add(user);
+        
         //ActiveUser = new User();
-
         questIdNumber = 1;
         SceneManager.LoadScene("SonucEkrani");
     }
@@ -129,6 +163,11 @@ public class GameController : MonoBehaviour
                 b.GetComponentInChildren<Text>().text = "B: "+_questions[randomQuestionId].answerTwo;
                 c.GetComponentInChildren<Text>().text = "C: "+_questions[randomQuestionId].answerThree;
                 d.GetComponentInChildren<Text>().text = "D: "+_questions[randomQuestionId].answerFour;
+
+                //aktivete joker and gift
+                if (questIdNumber == 6)
+                    HalfGameObjectsTrue();
+
                 break;
             }
             else if (selectionQuests.Count == _questions.Count)
@@ -143,7 +182,6 @@ public class GameController : MonoBehaviour
     public void AnswerA(int id = 1)
     {
         ButtonsDeactiveted();
-
         if (id == activeQuestion.correctAnswerId)
         {
             //Confeti
@@ -153,14 +191,19 @@ public class GameController : MonoBehaviour
             //Yeni Soru
             //Invoke olabilir.
             Invoke("NextQuestion", 3f);
+            correctAnswer.Play();
         }
         else
         {
             a.GetComponent<SVGImage>().color = new Color(0.8f, 0f, 0f);
+            ToWhiteAnswerChildText(a);
             Invoke("WrongAnswer", 3f);
+            wrongAnswer.Play();
+
         }
         slider.isGoing = false;
     }
+
     public void AnswerB(int id = 2)
     {
         ButtonsDeactiveted();
@@ -174,11 +217,18 @@ public class GameController : MonoBehaviour
             //Yeni Soru
             //Invoke olabilir.
             Invoke("NextQuestion", 3f);
+            correctAnswer.Play();
+
         }
         else
         {
             b.GetComponent<SVGImage>().color = new Color(0.8f, 0f, 0f);
+
+            ToWhiteAnswerChildText(b);
+
             Invoke("WrongAnswer", 3f);
+            wrongAnswer.Play();
+
         }
         slider.isGoing = false;
     }
@@ -195,11 +245,18 @@ public class GameController : MonoBehaviour
             //Yeni Soru
             //Invoke olabilir.
             Invoke("NextQuestion", 3f);
+            correctAnswer.Play();
+
         }
         else
         {
             c.GetComponent<SVGImage>().color = new Color(0.8f, 0f, 0f);
+
+            ToWhiteAnswerChildText(c);
+
             Invoke("WrongAnswer", 3f);
+            wrongAnswer.Play();
+
         }
         slider.isGoing = false;
     }
@@ -216,12 +273,18 @@ public class GameController : MonoBehaviour
             //Yeni Soru
             //Invoke olabilir.
             Invoke("NextQuestion", 3f);
+            correctAnswer.Play();
+
 
         }
         else
         {
             d.GetComponent<SVGImage>().color = new Color(0.8f, 0f, 0f);
+
+            ToWhiteAnswerChildText(d);
+
             Invoke("WrongAnswer", 3f);
+            wrongAnswer.Play();
         }
         slider.isGoing = false;
     }
@@ -230,17 +293,20 @@ public class GameController : MonoBehaviour
     {
         if (questIdNumber < 12)
         {
+            //Joker cifte sans control
+            jokerController.isOnCifteSans = jokerController.isOnCifteSans ? false : false;
             //Gecis ekrani
             SoruEkrani.SetActive(false);
             GecisEkrani.SetActive(true);
-            //Game Screen ayarlamalarý
+            //Game Screen ayarlamalarý süre, soru, puan
             slider.questTime = _questions[selectionQuests.Count - 1].questTime;
             slider.ResetScore();
             ActiveUser.Score += (_questions[selectionQuests.Count - 1].questScore * slider.SayacControl); // burada bana her zaman son gelen sorunun puanýný getirecek
             UserScore.text = ActiveUser.Score.ToString();
             slider.isGoing = true;
             //SelectQuestion();
-            Invoke("SelectQuestion", 3f);
+            //2 saniye sonra yeni soru gelecek
+            Invoke("SelectQuestion", 2f);
             ButtonsActiveted();
             questIdNumber++;
             questId.text = questIdNumber.ToString();
@@ -254,34 +320,46 @@ public class GameController : MonoBehaviour
     {
         if(questIdNumber < 12)
         {
-            //Gecis ekrani
-            SoruEkrani.SetActive(false);
-            GecisEkrani.SetActive(true);
-            //
-            slider.questTime = _questions[selectionQuests.Count - 1].questTime;
-            slider.ResetScore();
-            //ActiveUser.Score += _questions[selectionQuests.Count - 1].questScore; // burada bana her zaman son gelen sorunun puanýný getirecek
-            //UserScore.text = ActiveUser.Score.ToString();
-            slider.isGoing = true;
-            ButtonsActiveted();
-            //EndGame();
-            //questIdNumber = 1;
-            questIdNumber++;
-            questId.text = questIdNumber.ToString();
-            Invoke("SelectQuestion", 3f);
-            //SelectQuestion();
-            //SceneManager.LoadScene("FormEkrani");
+            //joker control
+            if (jokerController.isOnCifteSans)
+            {
+                AfterJokerButtonsActivated();
+                jokerController.isOnCifteSans = false;
+            }
+            else
+            {
+                Debug.Log(questIdNumber);
+                //Gecis ekrani
+                SoruEkrani.SetActive(false);
+                GecisEkrani.SetActive(true);
+                //
+                slider.questTime = _questions[selectionQuests.Count - 1].questTime;
+                slider.ResetScore();
+                //ActiveUser.Score += _questions[selectionQuests.Count - 1].questScore; // burada bana her zaman son gelen sorunun puanýný getirecek
+                //UserScore.text = ActiveUser.Score.ToString();
+                slider.isGoing = true;
+                ButtonsActiveted();
+                //EndGame();
+                //questIdNumber = 1;
+                questIdNumber++;
+                questId.text = questIdNumber.ToString();
+                Invoke("SelectQuestion", 3f);
+                //SelectQuestion();
+                //SceneManager.LoadScene("FormEkrani");
+            }
         }
         else
         {
             EndGame();
         }
     }
+
     /// <summary>
     /// Yeni soruya geçmeden önce buttonlarý düzeltir.
     /// </summary>
     private void ButtonsActiveted()
     {
+        GameObject[] gameObjects = new GameObject[] { a, b, c, d }; 
         a.GetComponent<Button>().enabled = true;
         a.SetActive(true);
         a.GetComponent<SVGImage>().color = defaultColorButtons;
@@ -293,6 +371,27 @@ public class GameController : MonoBehaviour
         c.GetComponent<SVGImage>().color = defaultColorButtons;
         d.GetComponent<Button>().enabled = true;
         d.SetActive(true);
+        d.GetComponent<SVGImage>().color = defaultColorButtons;
+        for (int i = 0; i < gameObjects.Length; i++)
+        {
+            Transform parentTransform = gameObjects[i].transform; // Ana objeyi seçin
+
+            // Tüm child objeleri döngü ile iþleyin
+            foreach (Transform child in parentTransform)
+            {
+                child.GetComponent<Text>().color = new Color(0f, 0f, 0f);
+            }
+        }
+    }
+    private void AfterJokerButtonsActivated()
+    {
+        a.GetComponent<Button>().enabled = true;
+        a.GetComponent<SVGImage>().color = defaultColorButtons;
+        b.GetComponent<Button>().enabled = true;
+        b.GetComponent<SVGImage>().color = defaultColorButtons;
+        c.GetComponent<Button>().enabled = true;
+        c.GetComponent<SVGImage>().color = defaultColorButtons;
+        d.GetComponent<Button>().enabled = true;
         d.GetComponent<SVGImage>().color = defaultColorButtons;
     }
     /// <summary>
@@ -306,8 +405,27 @@ public class GameController : MonoBehaviour
         d.GetComponent<Button>().enabled = false;
     }
 
-    public void abc()
+    private void ToWhiteAnswerChildText(GameObject x)
     {
-        Debug.Log("Hover");
+        Transform parentTransform = x.transform; // Ana objeyi seçin
+                                                 // Tüm child objeleri döngü ile iþleyin
+        foreach (Transform child in parentTransform)
+        {
+            // Child objeye eriþim saðlandý
+            // Örnek olarak child objenin ölçülerini deðiþtirme
+            child.GetComponent<Text>().color = new Color(1f, 1f, 1f);
+        }
+    }
+
+    /// <summary>
+    /// oyunun yarýsýna geldiðinde belirli objeleri kullanýlýr hale getirir.
+    /// </summary>
+    public void HalfGameObjectsTrue()
+    {
+        jokerController.cifteSans.GetComponent<Button>().interactable = true; // Butonun týklanabilirliðini kapatýr.
+        jokerController.cifteSans.GetComponent<Image>().color =
+            new Color(jokerController.cifteSans.GetComponent<Image>().color.r, jokerController.cifteSans.GetComponent<Image>().color.g, jokerController.cifteSans.GetComponent<Image>().color.b, 1f); // Butonun saydamlýðýný arttýrýr.
+        Gift.SetActive(true);
+        Gift.GetComponent<Animator>().SetTrigger("play");
     }
 }

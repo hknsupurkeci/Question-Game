@@ -5,22 +5,34 @@ using UnityEngine.UI;
 
 public class JokerController : MonoBehaviour
 {
+    public GameObject cifteSans;
     [SerializeField] GameObject yariYariya;
-    [SerializeField] GameObject cifteSans;
     [SerializeField] GameObject ekZaman;
     [SerializeField] GameObject jokerInfo;
     [SerializeField] Text jokerInfoText;
     public GameController gameController;
     public ProgressSlider progressSlider;
+    //Sounds
+    [SerializeField] AudioSource bildirimSound;
+    [SerializeField] AudioSource yariYariyaSound;
+    [SerializeField] AudioSource ekSureSound;
+    [SerializeField] AudioSource cifteSansSound;
+    //
+    public bool isOnCifteSans = false;
     public void YariYariyaJoker()
     {
-        progressSlider.isGoing = false;
-        jokerInfo.SetActive(true);
-        jokerInfoText.text = "Yarý yarýya joker hakkýnýzý kullandýnýz!\nsizin için iki þýk elenecek.";
-        Invoke("YariYari", 3f);
+        if (progressSlider.isGoing)
+        {
+            bildirimSound.Play();
+            progressSlider.isGoing = false;
+            jokerInfo.SetActive(true);
+            jokerInfoText.text = "Yarý yarýya joker hakkýnýzý kullandýnýz!\nsizin için iki þýk elenecek.";
+            Invoke("YariYari", 3f);
+        }
     }
     private void YariYari()
     {
+        yariYariyaSound.Play();
         //görüntü
         yariYariya.GetComponent<Button>().interactable = false; // Butonun týklanabilirliðini kapatýr.
         yariYariya.GetComponent<Image>().color = new Color(yariYariya.GetComponent<Image>().color.r, yariYariya.GetComponent<Image>().color.g, yariYariya.GetComponent<Image>().color.b, 0.5f); // Butonun saydamlýðýný arttýrýr.
@@ -58,13 +70,18 @@ public class JokerController : MonoBehaviour
     }
     public void EkZamanJoker()
     {
-        progressSlider.isGoing = false;
-        jokerInfo.SetActive(true);
-        jokerInfoText.text = "Ek zaman joker hakkýnýzý kullandýnýz!\nEk süreniz eklendi!";
-        Invoke("EkZaman", 3f);
+        if (progressSlider.isGoing)
+        {
+            bildirimSound.Play();
+            progressSlider.isGoing = false;
+            jokerInfo.SetActive(true);
+            jokerInfoText.text = "Ek zaman joker hakkýnýzý kullandýnýz!\nEk süreniz eklendi!";
+            Invoke("EkZaman", 3f);
+        }
     }
     public void EkZaman()
     {
+        ekSureSound.Play();
         //görüntü
         ekZaman.GetComponent<Button>().interactable = false; // Butonun týklanabilirliðini kapatýr.
         ekZaman.GetComponent<Image>().color = new Color(ekZaman.GetComponent<Image>().color.r, ekZaman.GetComponent<Image>().color.g, ekZaman.GetComponent<Image>().color.b, 0.5f); // Butonun saydamlýðýný arttýrýr.
@@ -77,8 +94,24 @@ public class JokerController : MonoBehaviour
     }
     public void CifteSansJoker()
     {
+        if (progressSlider.isGoing)
+        {
+            cifteSansSound.Play();
+            progressSlider.isGoing = false;
+            jokerInfo.SetActive(true);
+            jokerInfoText.text = "Cift joker hakkýnýzý kullandýnýz!\nÝki seçenecek seçebilirsiniz!";
+            Invoke("CifteSans", 3f);
+        }
+    }
+    public void CifteSans()
+    {
         //görüntü
         cifteSans.GetComponent<Button>().interactable = false; // Butonun týklanabilirliðini kapatýr.
         cifteSans.GetComponent<Image>().color = new Color(cifteSans.GetComponent<Image>().color.r, cifteSans.GetComponent<Image>().color.g, cifteSans.GetComponent<Image>().color.b, 0.5f); // Butonun saydamlýðýný arttýrýr.
+        //cifte sans aktif
+        isOnCifteSans = true;
+        //activate
+        jokerInfo.SetActive(false);
+        progressSlider.isGoing = true;
     }
 }

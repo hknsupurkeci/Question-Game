@@ -32,6 +32,10 @@ public class CameraCapture : MonoBehaviour
         Sprite sprite = Sprite.Create(capturedTexture, new Rect(0, 0, capturedTexture.width, capturedTexture.height), new Vector2(0.5f, 0.5f));
         displayImageOnCanvas.sprite = sprite; // Çekilen fotoðrafý canvas'ta gösteriyoruz.
 
+        // Texture2D'yi masaüstüne kaydet
+        byte[] bytes = capturedTexture.EncodeToJPG();
+        System.IO.File.WriteAllBytes(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + "/sprite.jpg", bytes);
+
         Debug.Log("foto çekildi");
     }
 }

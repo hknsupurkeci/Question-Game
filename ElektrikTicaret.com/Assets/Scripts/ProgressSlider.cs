@@ -16,6 +16,7 @@ public class ProgressSlider : MonoBehaviour
     float timer = 0f;
     float countdownDuration = 1f; // Saniye
     public bool isGoing = true; // Eðer soru arasýnda ise false olacak ve sayaç duracak
+    public AudioSource clockSound;
     private void Start()
     {
         slider.maxValue = maxTime;
@@ -52,9 +53,12 @@ public class ProgressSlider : MonoBehaviour
             timer += Time.deltaTime;
             if (timer >= countdownDuration)
             {
+                clockSound.Play();
                 sayac -= 1;
                 sayacText.text = "00:" + (sayac < 10 ? "0" + sayac.ToString() : sayac.ToString()); // sayac 10 dan küçükse otomatik olarak 0 atacak önüne
                 timer = 0f;
+                if (sayac == 0)
+                    slider.value = 0f;
             }
         }
     }

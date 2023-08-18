@@ -152,13 +152,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd606d01f6d48744da78427800a37a7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yariYariya: {fileID: 1678669603}
   cifteSans: {fileID: 1594544583}
+  yariYariya: {fileID: 1678669603}
   ekZaman: {fileID: 1797117379}
   jokerInfo: {fileID: 683716437}
   jokerInfoText: {fileID: 1600001294}
   gameController: {fileID: 755153595}
   progressSlider: {fileID: 1066168916}
+  bildirimSound: {fileID: 1808454144}
+  yariYariyaSound: {fileID: 22470298}
+  ekSureSound: {fileID: 1835508712}
+  cifteSansSound: {fileID: 774374357}
+  isOnCifteSans: 0
 --- !u!4 &4883338
 Transform:
   m_ObjectHideFlags: 0
@@ -293,6 +298,134 @@ RectTransform:
   m_AnchoredPosition: {x: -532, y: 6.1899414}
   m_SizeDelta: {x: 866.39, y: 93.51398}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &22470296
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 22470297}
+  - component: {fileID: 22470298}
+  m_Layer: 0
+  m_Name: Yari Yariya Joker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &22470297
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22470296}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2062734848}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &22470298
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22470296}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 6b10f5e14bde005449b36a473b628c19, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &33665968
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,13 +513,14 @@ GameObject:
   - component: {fileID: 40919615}
   - component: {fileID: 40919617}
   - component: {fileID: 40919616}
+  - component: {fileID: 40919618}
   m_Layer: 5
-  m_Name: CoinImage
+  m_Name: Gift
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &40919615
 RectTransform:
   m_ObjectHideFlags: 0
@@ -445,6 +579,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 40919614}
   m_CullTransparentMesh: 1
+--- !u!95 &40919618
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40919614}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4a25a9951a32243429ae48304136a4a8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &49010558
 GameObject:
   m_ObjectHideFlags: 0
@@ -655,6 +810,134 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 3286163911610860551, guid: 45f3a196e7cb5eb408a935b03100ea54, type: 3}
   m_PreserveAspect: 0
+--- !u!1 &139960757
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 139960758}
+  - component: {fileID: 139960759}
+  m_Layer: 0
+  m_Name: Dogru Cevap
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &139960758
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139960757}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2062734848}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &139960759
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139960757}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: ef3a9741af1746547bc194f488a2f352, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &183030931
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,6 +976,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &196972654
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 196972655}
+  m_Layer: 0
+  m_Name: Soru Gecis
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &196972655
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196972654}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2062734848}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &198822874
 GameObject:
   m_ObjectHideFlags: 0
@@ -2733,122 +3047,170 @@ MonoBehaviour:
   StartEkrani: {fileID: 293464130}
   GecisEkrani: {fileID: 1494660759}
   _questions:
-  - quest: "Tay tay gider, \xFCst\xFCne de yeller eser. Aya\u011F\u0131 tak\u0131l\u0131rsa,
-      seni yerlerde s\xFCr\xFCkler."
-    answerOne: AT
-    answerTwo: "E\u015E\u015EEK"
-    answerThree: MAYMUN
-    answerFour: "Z\xDCRAFA"
-    correctAnswerId: 1
-    questTime: 45
-    questScore: 15
-  - quest: "Parma\u011F\u0131nda g\xF6z\xFCm var, daireyim k\xF6\u015Fem yok. Parlak
-      ya da mat, beni takar damat"
-    answerOne: ALTIN
-    answerTwo: "PEN\xC7E"
-    answerThree: "Y\xDCZ\xDCK"
-    answerFour: HALKA
-    correctAnswerId: 3
-    questTime: 15
-    questScore: 15
-  - quest: "Sesi kesilmez r\xFCzgarda, i\xE7ine giren serinler. \xC7\xFCnk\xFC biraz
-      ferah da\u2026"
-    answerOne: "U\xC7AK"
-    answerTwo: "DEN\u0130Z"
-    answerThree: "GEM\u0130"
-    answerFour: ARABA
-    correctAnswerId: 2
-    questTime: 50
-    questScore: 25
-  - quest: "\u0130\xE7i dolu pamuk. Arkan\u0131 yaslan, onu doldurduk."
-    answerOne: YORGAN
-    answerTwo: BACA
-    answerThree: KIRLENT
-    answerFour: YASTIK
+  - quest: "Proje-M \xFCzerinden en fazla ka\xE7 amperlik busbar hatt\u0131 \xE7al\u0131\u015F\u0131labilir
+      ?"
+    answerOne: 63A
+    answerTwo: 225A
+    answerThree: 400A
+    answerFour: 600A
     correctAnswerId: 4
     questTime: 30
-    questScore: 12
-  - quest: "Fal ta\u015F\u0131 gibi g\xF6zleri, pamuktand\u0131r elleri. Oynamay\u0131
-      \xE7ok sever, iki yanda uzan\u0131r \xF6rg\xFCleri."
-    answerOne: BEZ BEBEK
-    answerTwo: "\xC7OCUK"
-    answerThree: "KED\u0130"
-    answerFour: "AL\u0130 RIZA"
+    questScore: 50
+  - quest: "Saha uygulamalar\u0131n\u0131n dijital ikizi olan yap\u0131n\u0131n ismi
+      nedir ?"
+    answerOne: E-PANORAMA
+    answerTwo: E-PANDORYA
+    answerThree: E-PANAMA
+    answerFour: E-PARANOYA
     correctAnswerId: 1
-    questTime: 15
-    questScore: 45
-  - quest: "Fal ta\u015F\u0131 gibi g\xF6zleri, pamuktand\u0131r elleri. Oynamay\u0131
-      \xE7ok sever, iki yanda uzan\u0131r \xF6rg\xFCleri."
-    answerOne: BEZ BEBEK
-    answerTwo: "\xC7OCUK"
-    answerThree: "KED\u0130"
-    answerFour: "AL\u0130 RIZA"
+    questTime: 30
+    questScore: 50
+  - quest: "Portaldaki ayd\u0131nlatma armat\xFCrlerinin renk s\u0131cakl\u0131klar\u0131
+      nedir ?"
+    answerOne: 4000K-6000K
+    answerTwo: 4000K-6500K
+    answerThree: 3000K-5000K
+    answerFour: 5000K-6500K
+    correctAnswerId: 2
+    questTime: 30
+    questScore: 50
+  - quest: "KYS Busbar hangi ak\u0131m kademelerinde \xFCretilmektedir ?"
+    answerOne: 100A-160A-225A
+    answerTwo: 23A-45A-60A
+    answerThree: 25A-40A-63A
+    answerFour: 63A-160A-225A
+    correctAnswerId: 3
+    questTime: 30
+    questScore: 50
+  - quest: "KYS Busbar \xF6zellikerinden de\u011Fildir ?"
+    answerOne: HIZLI MONTAJ
+    answerTwo: "MOD\xDCLER"
+    answerThree: "ESTET\u0130K D\u0130ZAYN"
+    answerFour: "TEK SEFERL\u0130K MONTAJ YAPILIR, TA\u015EINMAZ"
+    correctAnswerId: 4
+    questTime: 30
+    questScore: 50
+  - quest: "KYS G\xFC\xE7 Busbar\u0131 otomatl\u0131 \xE7\u0131k\u0131\u015F kutusu
+      ka\xE7 amperdir ? ( KYP - Bo\u015F \xC7\u0131k\u0131\u015F Kutusu)"
+    answerOne: 63A
+    answerTwo: 32A
+    answerThree: 16A
+    answerFour: 25A
+    correctAnswerId: 2
+    questTime: 30
+    questScore: 50
+  - quest: "elektrikticaret.com temel \xF6zellikerinden de\u011Fildir ?"
+    answerOne: Stoktan teslim
+    answerTwo: "Bayi \xFCzerinden sat\u0131\u015F"
+    answerThree: "PROJE-M ile h\u0131zl\u0131 ke\u015Fiflendirme"
+    answerFour: "Sadece kredi kart\u0131 ile \xF6deme al\u0131n\u0131r"
+    correctAnswerId: 4
+    questTime: 30
+    questScore: 50
+  - quest: "Busbar\u0131n mod\xFCler olmas\u0131 ne alama gelir ?"
+    answerOne: "Kesilip kullan\u0131labilir"
+    answerTwo: "S\xF6k\xFCl\xFCp - tekrar kullan\u0131labilir"
+    answerThree: "Katlanabilir ve b\xFCk\xFClebilir"
+    answerFour: "Kaynak yap\u0131labilir"
+    correctAnswerId: 2
+    questTime: 30
+    questScore: 50
+  - quest: "EAE \xFCr\xFCnlerini kolayca sat\u0131nalabilece\u011Finiz e-ticaret
+      platformu hangisidir ?"
+    answerOne: eaeticaretim.com
+    answerTwo: elektrikticaret.com
+    answerThree: elektronikticaretim.com
+    answerFour: eaeshop.com
+    correctAnswerId: 2
+    questTime: 30
+    questScore: 50
+  - quest: "Hangisi busbar yap\u0131s\u0131nda bulunmaz ?"
+    answerOne: "D\u0131\u015F g\xF6vde"
+    answerTwo: "\u0130zolasyon katmanlar\u0131"
+    answerThree: "Opal dif\xFCz\xF6r"
+    answerFour: "\u0130letken baralar"
+    correctAnswerId: 3
+    questTime: 30
+    questScore: 50
+  - quest: "30 KW'l\u0131k bir makine i\xE7in ka\xE7 amperlik sigorta se\xE7ilir
+      ?"
+    answerOne: 32A
+    answerTwo: 16A
+    answerThree: 63A
+    answerFour: 100A
+    correctAnswerId: 3
+    questTime: 30
+    questScore: 50
+  - quest: "Busbarlarda kullan\u0131lan iletken \xE7e\u015Fitleri nelerdir ?"
+    answerOne: "Bak\u0131r - \xC7inko"
+    answerTwo: "Pirin\xE7 - Bak\u0131r"
+    answerThree: "Bak\u0131r - Al\xFCminyum"
+    answerFour: "Kalay - Al\xFCminyum"
+    correctAnswerId: 3
+    questTime: 30
+    questScore: 50
+  - quest: "Busbarlar se\xE7imi hangi de\u011Fere g\xF6re yap\u0131l\u0131r ?"
+    answerOne: Watt
+    answerTwo: Volt
+    answerThree: Amper
+    answerFour: "Ohm (diren\xE7)"
+    correctAnswerId: 3
+    questTime: 30
+    questScore: 50
+  - quest: "KYS Busbarda ka\xE7 metrede bir \xE7\u0131k\u0131\u015F fi\u015Fi tak\u0131labilir
+      ?"
+    answerOne: 3 Metre
+    answerTwo: 1 Metre
+    answerThree: 1,5 Metre
+    answerFour: 2 Metre
+    correctAnswerId: 2
+    questTime: 30
+    questScore: 50
+  - quest: "Armat\xFCr\xFCn verimlilik endeksini g\xF6steren parametre hangisidir
+      ?"
+    answerOne: "L\xFCmen/Watt"
+    answerTwo: "Watt/L\xFCmen"
+    answerThree: "L\xFCks/Watt"
+    answerFour: "L\xFCmen/L70"
     correctAnswerId: 1
-    questTime: 15
-    questScore: 45
-  - quest: "Fal ta\u015F\u0131 gibi g\xF6zleri, pamuktand\u0131r elleri. Oynamay\u0131
-      \xE7ok sever, iki yanda uzan\u0131r \xF6rg\xFCleri."
-    answerOne: BEZ BEBEK
-    answerTwo: "\xC7OCUK"
-    answerThree: "KED\u0130"
-    answerFour: "AL\u0130 RIZA"
+    questTime: 30
+    questScore: 50
+  - quest: "Hangisi  led s\xFCr\xFCc\xFCs\xFCn\xFCn(driver) kalitesini g\xF6steren
+      kriterlerdendir ?"
+    answerOne: ENEC Belgesi
+    answerTwo: "Power Fakt\xF6r (\u03BB)"
+    answerThree: "Bak\u0131r - Al\xFCminyum"
+    answerFour: "Kalay - Al\xFCminyum"
+    correctAnswerId: 3
+    questTime: 30
+    questScore: 50
+  - quest: "40mx20mm ebatlar\u0131nda, 5m y\xFCkselikte, 300L\xFCx ihtiya\xE7 olan
+      bir atolyede yakla\u015F\u0131k ka\xE7 adet YPL 53w \xFCr\xFCnden kullan\u0131l\u0131r
+      ?"
+    answerOne: 50-60 Adet
+    answerTwo: 200-250 Adet
+    answerThree: 100-150 Adet
+    answerFour: 20-30 Adet
     correctAnswerId: 1
-    questTime: 15
-    questScore: 45
-  - quest: "Fal ta\u015F\u0131 gibi g\xF6zleri, pamuktand\u0131r elleri. Oynamay\u0131
-      \xE7ok sever, iki yanda uzan\u0131r \xF6rg\xFCleri."
-    answerOne: BEZ BEBEK
-    answerTwo: "\xC7OCUK"
-    answerThree: "KED\u0130"
-    answerFour: "AL\u0130 RIZA"
-    correctAnswerId: 1
-    questTime: 15
-    questScore: 45
-  - quest: "Fal ta\u015F\u0131 gibi g\xF6zleri, pamuktand\u0131r elleri. Oynamay\u0131
-      \xE7ok sever, iki yanda uzan\u0131r \xF6rg\xFCleri."
-    answerOne: BEZ BEBEK
-    answerTwo: "\xC7OCUK"
-    answerThree: "KED\u0130"
-    answerFour: "AL\u0130 RIZA"
-    correctAnswerId: 1
-    questTime: 15
-    questScore: 45
-  - quest: "Fal ta\u015F\u0131 gibi g\xF6zleri, pamuktand\u0131r elleri. Oynamay\u0131
-      \xE7ok sever, iki yanda uzan\u0131r \xF6rg\xFCleri."
-    answerOne: BEZ BEBEK
-    answerTwo: "\xC7OCUK"
-    answerThree: "KED\u0130"
-    answerFour: "AL\u0130 RIZA"
-    correctAnswerId: 1
-    questTime: 15
-    questScore: 45
-  - quest: "Fal ta\u015F\u0131 gibi g\xF6zleri, pamuktand\u0131r elleri. Oynamay\u0131
-      \xE7ok sever, iki yanda uzan\u0131r \xF6rg\xFCleri."
-    answerOne: BEZ BEBEK
-    answerTwo: "\xC7OCUK"
-    answerThree: "KED\u0130"
-    answerFour: "AL\u0130 RIZA"
-    correctAnswerId: 1
-    questTime: 15
-    questScore: 45
-  - quest: "Fal ta\u015F\u0131 gibi g\xF6zleri, pamuktand\u0131r elleri. Oynamay\u0131
-      \xE7ok sever, iki yanda uzan\u0131r \xF6rg\xFCleri."
-    answerOne: BEZ BEBEK
-    answerTwo: "\xC7OCUK"
-    answerThree: "KED\u0130"
-    answerFour: "AL\u0130 RIZA"
-    correctAnswerId: 1
-    questTime: 15
-    questScore: 45
-  - quest: "Fal ta\u015F\u0131 gibi g\xF6zleri, pamuktand\u0131r elleri. Oynamay\u0131
-      \xE7ok sever, iki yanda uzan\u0131r \xF6rg\xFCleri."
-    answerOne: BEZ BEBEK
-    answerTwo: "\xC7OCUK"
-    answerThree: "KED\u0130"
-    answerFour: "AL\u0130 RIZA"
-    correctAnswerId: 1
-    questTime: 15
-    questScore: 45
+    questTime: 30
+    questScore: 50
+  - quest: "A\u015Fa\u011F\u0131dakilerden hangisi ayd\u0131nlatma yerimi de\u011Fildir
+      ? "
+    answerOne: "L\xFCx"
+    answerTwo: "L\xFCmen"
+    answerThree: CRI
+    answerFour: CTH
+    correctAnswerId: 4
+    questTime: 30
+    questScore: 50
+  - quest: "Hangisi elektrikticaret'in temel \xF6zelliklerinden de\u011Fildir ?"
+    answerOne: "Ayd\u0131nlatma \xFCr\xFCnlerinde 3 y\u0131l garanti"
+    answerTwo: "Proje-M ile h\u0131zl\u0131 ke\u015Fiflendirme"
+    answerThree: "Bayi kanal\u0131 ile sat\u0131\u015F"
+    answerFour: 2-5 hafta teslim
+    correctAnswerId: 4
+    questTime: 30
+    questScore: 50
   questionText: {fileID: 1860110557}
   a: {fileID: 1624087755}
   b: {fileID: 829425401}
@@ -2865,6 +3227,11 @@ MonoBehaviour:
   slider: {fileID: 1066168916}
   maxQuestCount: 12
   leaderboard: {fileID: 11400000, guid: bc5e2bc54b14c9b4aaf425c4b9c0c8f7, type: 2}
+  baslatSound: {fileID: 1484737484}
+  correctAnswer: {fileID: 139960759}
+  wrongAnswer: {fileID: 1712259134}
+  jokerController: {fileID: 4883337}
+  Gift: {fileID: 40919614}
 --- !u!4 &755153596
 Transform:
   m_ObjectHideFlags: 0
@@ -2880,6 +3247,134 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &774374355
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 774374356}
+  - component: {fileID: 774374357}
+  m_Layer: 0
+  m_Name: Cifte Sans
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &774374356
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774374355}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2062734848}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &774374357
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774374355}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: ef69e17fce9995a4a8858d6730252023, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &782628375
 GameObject:
   m_ObjectHideFlags: 0
@@ -3178,7 +3673,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -140, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &849510743
 MonoBehaviour:
@@ -3202,10 +3697,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: a064fd35d09caac4488700c993813f77, type: 3}
-    m_FontSize: 43
+    m_FontSize: 28
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 4
+    m_MinSize: 2
     m_MaxSize: 43
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -3780,6 +4275,7 @@ MonoBehaviour:
   fill: {fileID: 108816398}
   sayacText: {fileID: 1934608481}
   isGoing: 1
+  clockSound: {fileID: 2075234125}
 --- !u!114 &1066168917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3867,7 +4363,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -140, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1125495281
 MonoBehaviour:
@@ -3891,10 +4387,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: a064fd35d09caac4488700c993813f77, type: 3}
-    m_FontSize: 43
+    m_FontSize: 28
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 4
+    m_MinSize: 2
     m_MaxSize: 43
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -4697,6 +5193,134 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1464930104}
   m_CullTransparentMesh: 1
+--- !u!1 &1484737482
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1484737483}
+  - component: {fileID: 1484737484}
+  m_Layer: 0
+  m_Name: Oyun Baslangic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1484737483
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484737482}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2062734848}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1484737484
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484737482}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 3a9c1b8f8eef86148a1acbfd2ddaf304, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1494660759
 GameObject:
   m_ObjectHideFlags: 0
@@ -4982,7 +5606,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1594544586}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4883337}
+        m_TargetAssemblyTypeName: JokerController, Assembly-CSharp
+        m_MethodName: CifteSansJoker
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1594544586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4996,7 +5632,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5589,6 +6225,134 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1712259132
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1712259133}
+  - component: {fileID: 1712259134}
+  m_Layer: 0
+  m_Name: Yanlis Cevap
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1712259133
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712259132}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2062734848}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1712259134
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712259132}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 03549134cccbf7d4ca34a62ac7836934, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1716731772
 GameObject:
   m_ObjectHideFlags: 0
@@ -5799,6 +6563,262 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1797117379}
   m_CullTransparentMesh: 1
+--- !u!1 &1808454142
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1808454143}
+  - component: {fileID: 1808454144}
+  m_Layer: 0
+  m_Name: Bildirim
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1808454143
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808454142}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2062734848}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1808454144
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808454142}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 63a49b6e78fca3b4884c258a3252c663, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!1 &1835508710
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1835508711}
+  - component: {fileID: 1835508712}
+  m_Layer: 0
+  m_Name: Ek Sure
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1835508711
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1835508710}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2062734848}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1835508712
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1835508710}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 129c5a0e881b34e48bf3b42da435ace0, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1860110553
 GameObject:
   m_ObjectHideFlags: 0
@@ -6707,7 +7727,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -140, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2034946727
 MonoBehaviour:
@@ -6731,10 +7751,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: a064fd35d09caac4488700c993813f77, type: 3}
-    m_FontSize: 43
+    m_FontSize: 28
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 4
+    m_MinSize: 2
     m_MaxSize: 43
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -6973,6 +7993,174 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 3286163911610860551, guid: 85cb6f8dcb6b5324380b8cdd033cb796, type: 3}
   m_PreserveAspect: 0
+--- !u!1 &2062734847
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2062734848}
+  m_Layer: 0
+  m_Name: Sounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2062734848
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062734847}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 554.29083, y: 274.86224, z: 1.0831816}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1484737483}
+  - {fileID: 139960758}
+  - {fileID: 1712259133}
+  - {fileID: 22470297}
+  - {fileID: 1835508711}
+  - {fileID: 774374356}
+  - {fileID: 196972655}
+  - {fileID: 1808454143}
+  - {fileID: 2075234124}
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2075234123
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2075234124}
+  - component: {fileID: 2075234125}
+  m_Layer: 0
+  m_Name: Clock
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2075234124
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075234123}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2062734848}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &2075234125
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075234123}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: ec07940fa87b2d145a382ac32c3230bf, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2082821734
 GameObject:
   m_ObjectHideFlags: 0
@@ -7110,7 +8298,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -140, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2136439094
 MonoBehaviour:
@@ -7134,10 +8322,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: a064fd35d09caac4488700c993813f77, type: 3}
-    m_FontSize: 43
+    m_FontSize: 28
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 4
+    m_MinSize: 2
     m_MaxSize: 43
     m_Alignment: 4
     m_AlignByGeometry: 0

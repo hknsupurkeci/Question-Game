@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7409d2196bcd11f47882e4ef82f94094, type: 3}
   m_Name: LeaderBoard
   m_EditorClassIdentifier: 
+  kullaniciBilgileri: []

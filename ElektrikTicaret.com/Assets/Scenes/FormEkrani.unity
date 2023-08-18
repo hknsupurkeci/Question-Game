@@ -1901,6 +1901,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1348402956}
   - component: {fileID: 1348402955}
+  - component: {fileID: 1348402957}
   m_Layer: 0
   m_Name: Yonlendirme
   m_TagString: Untagged
@@ -1920,9 +1921,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e33b6383f54a5df4ea7f4eb9e2a1bdb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: {fileID: 404586047}
-  score: {fileID: 0}
-  leaderboard: {fileID: 11400000, guid: bc5e2bc54b14c9b4aaf425c4b9c0c8f7, type: 2}
 --- !u!4 &1348402956
 Transform:
   m_ObjectHideFlags: 0
@@ -1938,6 +1936,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1348402957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348402954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bbfda60f4be83f4e80dddae53d82914, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: {fileID: 404586047}
+  score: {fileID: 0}
+  leaderboard: {fileID: 11400000, guid: bc5e2bc54b14c9b4aaf425c4b9c0c8f7, type: 2}
 --- !u!1 &1529021528
 GameObject:
   m_ObjectHideFlags: 0
