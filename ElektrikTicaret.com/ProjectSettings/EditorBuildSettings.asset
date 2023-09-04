@@ -9,14 +9,17 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/FormEkrani.unity
-    guid: 53b7779a91aef0b43bf8effe39759c4a
+    path: Assets/Scenes/SonucEkrani.unity
+    guid: 9d1b70b0307bdfc4cab1f644091ea892
   - enabled: 1
     path: Assets/Scenes/HediyeTeslimEkrani.unity
     guid: b512f5818e2f54f4b860ab2c05f85611
   - enabled: 1
-    path: Assets/Scenes/SonucEkrani.unity
-    guid: 9d1b70b0307bdfc4cab1f644091ea892
+    path: Assets/Scenes/FormEkrani.unity
+    guid: 53b7779a91aef0b43bf8effe39759c4a
+  - enabled: 1
+    path: Assets/Scenes/FotografEkrani.unity
+    guid: f637fea462402b1439edd181c0ede25a
   - enabled: 1
     path: Assets/Scenes/LeaderboardEkrani.unity
     guid: c73cd550f8d07b041aafe5ca8593f3b0

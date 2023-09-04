@@ -1,6 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.IO;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
+using System.Diagnostics;
+using System; 
+using Image = UnityEngine.UI.Image;
 
 public class CameraCapture : MonoBehaviour
 {
@@ -34,8 +40,41 @@ public class CameraCapture : MonoBehaviour
 
         // Texture2D'yi masaüstüne kaydet
         byte[] bytes = capturedTexture.EncodeToJPG();
-        System.IO.File.WriteAllBytes(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + "/sprite.jpg", bytes);
+        System.IO.File.WriteAllBytes(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + $"/{PlayerPrefs.GetString("playerName")}.jpg", bytes);
 
-        Debug.Log("foto çekildi");
+        PrintJPG();
+
+        UnityEngine.Debug.Log("foto çekildi");
+    }
+    /// <summary>
+    /// Oluþturulan jpg dosyasýný yazcýdan yazdýrýr.
+    /// </summary>
+    /// <param name="pdfFilePath"></param>
+    void PrintJPG()
+    {
+        try
+        {
+            string desktopPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop);
+            string jpgFilePath = Path.Combine(desktopPath, $"{PlayerPrefs.GetString("playerName")}.jpg");
+
+            ProcessStartInfo info = new ProcessStartInfo();
+            info.Verb = "print";
+            info.FileName = jpgFilePath;
+            info.CreateNoWindow = true;
+            info.WindowStyle = ProcessWindowStyle.Hidden;
+
+            Process p = new Process();
+            p.StartInfo = info;
+            p.Start();
+
+            p.WaitForInputIdle();
+            System.Threading.Thread.Sleep(3000);
+            if (false == p.CloseMainWindow())
+                p.Kill();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Yazdýrma hatasý: " + ex.Message);
+        }
     }
 }

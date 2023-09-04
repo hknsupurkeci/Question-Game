@@ -68,21 +68,30 @@ public class GameController : MonoBehaviour
     public JokerController jokerController;
     //Gift object
     [SerializeField] GameObject Gift;
+    //Text reader
+    public static TextReader textReader = new TextReader();
+
     private void Start()
     {
-        DontDestroyOnLoad(leaderboard);
+        Debug.Log(selectionQuests.Count);
         jokerController.cifteSans.GetComponent<Button>().interactable = false; // Butonun týklanabilirliðini kapatýr.
-
-        if (leaderboard.kullaniciBilgileri.Count == 0)
-        {
-            for (int i = 0; i < names.Length; i++)
-            {
-                User user = new User();
-                user.Name = names[i];
-                user.Score = Random.Range(1000, 5000);
-                leaderboard.kullaniciBilgileri.Add(user);
-            }
-        }
+        leaderboard.kullaniciBilgileri.Clear();
+        leaderboard.kullaniciBilgileri.AddRange(textReader.LoadAllUsers());
+        //if (leaderboard.kullaniciBilgileri.Count == 0)
+        //{
+        //    for (int i = 0; i < names.Length; i++)
+        //    {
+        //        User user = new User();
+        //        user.Name = names[i];
+        //        user.Score = Random.Range(0, 1000);
+        //        user.EMail = "test@testmail.com";
+        //        user.Telephone = "05555555555";
+        //        user.Firma = "EAE Elektrik";
+        //        leaderboard.kullaniciBilgileri.Add(user);
+        //        //textReader
+        //        textReader.SaveUser(user);
+        //    }
+        //}
         ActiveUser = new User();
         startValueInput = adSoyadInputText.text;
         startScreenImage = backgroundPanel.GetComponent<Image>().sprite;
@@ -99,6 +108,7 @@ public class GameController : MonoBehaviour
     }
     public void StartGame()
     {
+        //Application.OpenURL("https://www.elektrikticaret.com/");
         //Ad Soyad kýsmý boþ ise
         if (adSoyadInputText.text == startValueInput)
         {
@@ -125,21 +135,25 @@ public class GameController : MonoBehaviour
     }
     private void EndGame()
     {
-        adSoyadInputText.text = startValueInput;
-        GamePersonName.text = startValueInput;
-        backgroundPanel.GetComponent<Image>().sprite = startScreenImage;
-        SoruEkrani.SetActive(false);
-        StartEkrani.SetActive(true);
+        //adSoyadInputText.text = startValueInput;
+        //GamePersonName.text = startValueInput;
+        //backgroundPanel.GetComponent<Image>().sprite = startScreenImage;
+        //SoruEkrani.SetActive(false);
+        //StartEkrani.SetActive(true);
 
-        selectionQuests.Clear();
+        //selectionQuests.Clear();
 
         User user = new User();
         user.Name = ActiveUser.Name;
         user.Score = ActiveUser.Score;
-        leaderboard.kullaniciBilgileri.Add(user);
-        
+        //leaderboard.kullaniciBilgileri.Add(user);
+        GameManager.Instance.AddUserToLeaderboard(user);
+        //PlayerPrefs
+        PlayerPrefs.SetString("playerName", ActiveUser.Name);
+        PlayerPrefs.SetInt("playerScore", ActiveUser.Score);
+
         //ActiveUser = new User();
-        questIdNumber = 1;
+        //questIdNumber = 1;
         SceneManager.LoadScene("SonucEkrani");
     }
 
@@ -291,7 +305,7 @@ public class GameController : MonoBehaviour
     #endregion
     private void NextQuestion()
     {
-        if (questIdNumber < 12)
+        if (questIdNumber < maxQuestCount)
         {
             //Joker cifte sans control
             jokerController.isOnCifteSans = jokerController.isOnCifteSans ? false : false;
@@ -313,12 +327,14 @@ public class GameController : MonoBehaviour
         }
         else
         {
+            ActiveUser.Score += (_questions[selectionQuests.Count - 1].questScore * slider.SayacControl); // burada bana her zaman son gelen sorunun puanýný getirecek
+            UserScore.text = ActiveUser.Score.ToString();
             EndGame();
         }
     }
     private void WrongAnswer()
     {
-        if(questIdNumber < 12)
+        if(questIdNumber < maxQuestCount)
         {
             //joker control
             if (jokerController.isOnCifteSans)

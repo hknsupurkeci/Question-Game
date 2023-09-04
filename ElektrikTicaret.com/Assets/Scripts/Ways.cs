@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class Ways : MonoBehaviour
 {
@@ -10,9 +11,9 @@ public class Ways : MonoBehaviour
     {
         SceneManager.LoadScene("FormEkrani");
     }
-    public void SonucGonder()
+    public void KameraEkrani()
     {
-        SceneManager.LoadScene("HediyeTeslimEkrani");
+        SceneManager.LoadScene("FotografEkrani");
     }
     public void GirisSayfasinaDon()
     {
