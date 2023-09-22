@@ -313,9 +313,12 @@ public class GameController : MonoBehaviour
             SoruEkrani.SetActive(false);
             GecisEkrani.SetActive(true);
             //Game Screen ayarlamalarý süre, soru, puan
-            slider.questTime = _questions[selectionQuests.Count - 1].questTime;
-            slider.ResetScore();
+            Debug.Log((_questions[selectionQuests.Count - 1].questScore + " - " + slider.SayacControl));
             ActiveUser.Score += (_questions[selectionQuests.Count - 1].questScore * slider.SayacControl); // burada bana her zaman son gelen sorunun puanýný getirecek
+            slider.questTime = _questions[selectionQuests.Count - 1].questTime;
+            
+            slider.ResetScore();
+
             UserScore.text = ActiveUser.Score.ToString();
             slider.isGoing = true;
             //SelectQuestion();
