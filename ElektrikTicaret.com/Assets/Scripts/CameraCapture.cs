@@ -2,19 +2,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.IO;
-using iTextSharp.text.pdf;
-using iTextSharp.text;
 using System.Diagnostics;
-using System; 
-using Image = UnityEngine.UI.Image;
-using System.Runtime.CompilerServices;
-using UnityEngine.UIElements;
+using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 public class CameraCapture : MonoBehaviour
 {
     public UnityEngine.UI.Button FotoCekButton;
     private WebCamTexture webCamTexture;
-    public Image displayImageOnCanvas; // Canvas'taki Image bileþenini sürükleyin.
+    public RawImage displayImageOnCanvas; // Canvas'taki Image bileþenini sürükleyin.
     public GameObject kameraSayacObj;
     private Text kameraText;
     public int kameraCekimSayisi = 3;
@@ -22,12 +21,26 @@ public class CameraCapture : MonoBehaviour
     private float timer = 0;
     private float countdownDuration = 1f;
     private bool flag = false;
+    private AudioSource audioSource;
+
     private void Start()
     {
+        UnityEngine.Debug.Log(PlayerPrefs.GetString("playerEmail"));
+        // Kamera baþlatýlýyor ve RawImage bileþenine atanýyor.
+        webCamTexture = new WebCamTexture();
+        webCamTexture.requestedWidth = 3840; // Örnek olarak 4K çözünürlük
+        webCamTexture.requestedHeight = 2160;
+
+        audioSource = GetComponent<AudioSource>();
+        //
         _kameraCekimSayisi = kameraCekimSayisi;
         kameraText = kameraSayacObj.GetComponent<Text>();
         kameraText.text = kameraCekimSayisi.ToString();
-        webCamTexture = new WebCamTexture();
+
+        
+        //rawImage.texture = webCamTexture;
+        displayImageOnCanvas.texture = webCamTexture;
+        webCamTexture.Play();
     }
     private void Update()
     {
@@ -50,11 +63,21 @@ public class CameraCapture : MonoBehaviour
             }
         }
     }
+    // Sahne kapanýrken çaðrýlýr
+    void OnDestroy()
+    {
+        UnityEngine.Debug.Log("Camera captura");
+        // Kamerayý durdur
+        if (webCamTexture != null)
+        {
+            webCamTexture.Stop();
+            webCamTexture = null;
+        }
+    }
     public void StartCapture()
     {
-        webCamTexture.requestedWidth = 3840; // Örnek olarak 4K çözünürlük
-        webCamTexture.requestedHeight = 2160;
-        webCamTexture.Play();
+        
+        //webCamTexture.Play();
 
         flag = true;
         kameraSayacObj.SetActive(true);
@@ -62,30 +85,38 @@ public class CameraCapture : MonoBehaviour
 
         StartCoroutine(CapturePhotoAfterDelay(3.0f)); // 5 saniye bekleyip fotoðraf çekiliyor.
     }
-
     private IEnumerator CapturePhotoAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
 
-        try
-        {
-            Texture2D capturedTexture = new Texture2D(webCamTexture.width, webCamTexture.height);
-            capturedTexture.SetPixels(webCamTexture.GetPixels());
-            capturedTexture.Apply();
+        audioSource.Play();
+        //
+        Texture2D capturedTexture = new Texture2D(webCamTexture.width, webCamTexture.height);
+        capturedTexture.SetPixels(webCamTexture.GetPixels());
+        capturedTexture.Apply();
 
-            webCamTexture.Stop(); // Kamera durduruluyor.
+        //webCamTexture.Stop(); // Kamera durduruluyor.
 
-            Sprite sprite = Sprite.Create(capturedTexture, new Rect(0, 0, capturedTexture.width, capturedTexture.height), new Vector2(0.5f, 0.5f));
-            displayImageOnCanvas.sprite = sprite; // Çekilen fotoðrafý canvas'ta gösteriyoruz.
+        //Sprite sprite = Sprite.Create(capturedTexture, new Rect(0, 0, capturedTexture.width, capturedTexture.height), new Vector2(0.5f, 0.5f));
+        //displayImageOnCanvas.sprite = sprite; // Çekilen fotoðrafý canvas'ta gösteriyoruz.
 
-            // Texture2D'yi masaüstüne kaydet
-            byte[] bytes = capturedTexture.EncodeToJPG();
-            System.IO.File.WriteAllBytes(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + $"/{PlayerPrefs.GetString("playerName")}.jpg", bytes);
+        // Texture2D'yi masaüstüne kaydet
+        byte[] bytes = capturedTexture.EncodeToJPG();
+        string imagePath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + $"/{PlayerPrefs.GetString("playerName")}.jpg";
+        System.IO.File.WriteAllBytes(imagePath, bytes);
 
-            PrintJPG();
+        // Email gönderme iþlemini baþlat
+        yield return EmailSender(PlayerPrefs.GetString("playerName"), PlayerPrefs.GetString("playerEmail"), imagePath);
 
-            UnityEngine.Debug.Log("foto çekildi");
-        }catch(Exception ex) { UnityEngine.Debug.LogException(ex); }
+        PrintJPG();
+
+        UnityEngine.Debug.Log("foto çekildi");
+        //try
+        //{
+
+
+        //}
+        //catch (Exception ex) { UnityEngine.Debug.LogException(ex); }
     }
     /// <summary>
     /// Oluþturulan jpg dosyasýný yazcýdan yazdýrýr.
@@ -116,6 +147,30 @@ public class CameraCapture : MonoBehaviour
         catch (Exception ex)
         {
             Console.WriteLine("Yazdýrma hatasý: " + ex.Message);
+        }
+    }
+
+    IEnumerator EmailSender(string recipientName, string recipientEmail, string imagePath)
+    {
+        // Connect to service
+        var httpClient = new HttpClient();
+        var tokenService = new TokenService(httpClient);
+        var emailService = new EmailService(httpClient);
+
+        // Create the email
+        var emailSender = new EmailSender(tokenService, emailService, imagePath);
+
+        string subject = "Fotoðraflarýnýz";
+        string htmlContent = "<html><body>Merhaba,<br><br>Yarýþmamýza katýldýðýnýz için teþekkür ederiz. Fotoðrafýnýza ekten ulaþabilirsiniz.<br>Ýyi günler dileriz.</body></html>";
+
+        // Send to email
+        var task = emailSender.SendEmailAsync(recipientName, recipientEmail, subject, htmlContent);
+
+        yield return new WaitUntil(() => task.IsCompleted);
+
+        if (task.IsFaulted)
+        {
+            UnityEngine.Debug.LogError("Error sending email: " + task.Exception.ToString());
         }
     }
 }

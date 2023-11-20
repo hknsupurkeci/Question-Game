@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LeaderboardEkrani.unity
     guid: c73cd550f8d07b041aafe5ca8593f3b0
+  - enabled: 1
+    path: Assets/Scenes/KuralEkrani.unity
+    guid: c9397d6ad5594de46881e1cc69520de5
   m_configObjects: {}

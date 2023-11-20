@@ -29,4 +29,14 @@ public class TextReader
         }
         return users;
     }
+
+    public int UsersCount { 
+        get 
+        {
+            if (File.Exists(path))
+                return File.ReadAllLines(path).Length;
+            else
+                return 0;
+        } 
+    }
 }

@@ -23,4 +23,8 @@ public class Ways : MonoBehaviour
     {
         SceneManager.LoadScene("LeaderboardEkrani");
     }
+    public void KuralEkrani()
+    {
+        SceneManager.LoadScene("KuralEkrani");
+    }
 }

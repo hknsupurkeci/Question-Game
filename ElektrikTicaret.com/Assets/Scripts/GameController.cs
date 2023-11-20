@@ -70,28 +70,18 @@ public class GameController : MonoBehaviour
     [SerializeField] GameObject Gift;
     //Text reader
     public static TextReader textReader = new TextReader();
-
+    // Selected GameObject
+    private GameObject selectedGameObject;
+    //
+    public GameObject PopupScreen;
+    public Button PopupButton;
     private void Start()
     {
         Debug.Log(selectionQuests.Count);
         jokerController.cifteSans.GetComponent<Button>().interactable = false; // Butonun týklanabilirliðini kapatýr.
         leaderboard.kullaniciBilgileri.Clear();
         leaderboard.kullaniciBilgileri.AddRange(textReader.LoadAllUsers());
-        //if (leaderboard.kullaniciBilgileri.Count == 0)
-        //{
-        //    for (int i = 0; i < names.Length; i++)
-        //    {
-        //        User user = new User();
-        //        user.Name = names[i];
-        //        user.Score = Random.Range(0, 1000);
-        //        user.EMail = "test@testmail.com";
-        //        user.Telephone = "05555555555";
-        //        user.Firma = "EAE Elektrik";
-        //        leaderboard.kullaniciBilgileri.Add(user);
-        //        //textReader
-        //        textReader.SaveUser(user);
-        //    }
-        //}
+        FakeUsers();
         ActiveUser = new User();
         startValueInput = adSoyadInputText.text;
         startScreenImage = backgroundPanel.GetComponent<Image>().sprite;
@@ -106,6 +96,27 @@ public class GameController : MonoBehaviour
             Invoke("WrongAnswer", 3f);
         }
     }
+
+    private void FakeUsers()
+    {
+        Debug.Log($"User count : {textReader.UsersCount}");
+        if (textReader.UsersCount == 0)
+        {
+            for (int i = 0; i < names.Length; i++)
+            {
+                User user = new User();
+                user.Name = names[i];
+                user.Score = Random.Range(0, 1000);
+                user.EMail = "test@testmail.com";
+                user.Telephone = "05555555555";
+                user.Firma = "EAE Elektrik";
+                leaderboard.kullaniciBilgileri.Add(user);
+                //textReader
+                textReader.SaveUser(user);
+            }
+        }
+    }
+
     public void StartGame()
     {
         //Application.OpenURL("https://www.elektrikticaret.com/");
@@ -196,6 +207,7 @@ public class GameController : MonoBehaviour
     public void AnswerA(int id = 1)
     {
         ButtonsDeactiveted();
+
         if (id == activeQuestion.correctAnswerId)
         {
             //Confeti
@@ -215,6 +227,7 @@ public class GameController : MonoBehaviour
             wrongAnswer.Play();
 
         }
+        selectedGameObject = a;
         slider.isGoing = false;
     }
 
@@ -244,6 +257,7 @@ public class GameController : MonoBehaviour
             wrongAnswer.Play();
 
         }
+        selectedGameObject = b;
         slider.isGoing = false;
     }
     public void AnswerC(int id = 3)
@@ -272,6 +286,7 @@ public class GameController : MonoBehaviour
             wrongAnswer.Play();
 
         }
+        selectedGameObject = c;
         slider.isGoing = false;
     }
     public void AnswerD(int id = 4)
@@ -300,6 +315,7 @@ public class GameController : MonoBehaviour
             Invoke("WrongAnswer", 3f);
             wrongAnswer.Play();
         }
+        selectedGameObject = d;
         slider.isGoing = false;
     }
     #endregion
@@ -308,7 +324,7 @@ public class GameController : MonoBehaviour
         if (questIdNumber < maxQuestCount)
         {
             //Joker cifte sans control
-            jokerController.isOnCifteSans = jokerController.isOnCifteSans ? false : false;
+            jokerController.isOnCifteSans = jokerController.isOnCifteSans ? false : false; // burada çifte þans varken doðru bildiyse geri false oluyor
             //Gecis ekrani
             SoruEkrani.SetActive(false);
             GecisEkrani.SetActive(true);
@@ -337,12 +353,13 @@ public class GameController : MonoBehaviour
     }
     private void WrongAnswer()
     {
-        if(questIdNumber < maxQuestCount)
+        if(questIdNumber < maxQuestCount || jokerController.isOnCifteSans)
         {
             //joker control
             if (jokerController.isOnCifteSans)
             {
                 AfterJokerButtonsActivated();
+                selectedGameObject.SetActive(false);
                 jokerController.isOnCifteSans = false;
             }
             else
@@ -391,6 +408,7 @@ public class GameController : MonoBehaviour
         d.GetComponent<Button>().enabled = true;
         d.SetActive(true);
         d.GetComponent<SVGImage>().color = defaultColorButtons;
+        PopupButton.enabled = true;
         for (int i = 0; i < gameObjects.Length; i++)
         {
             Transform parentTransform = gameObjects[i].transform; // Ana objeyi seçin
@@ -412,6 +430,7 @@ public class GameController : MonoBehaviour
         c.GetComponent<SVGImage>().color = defaultColorButtons;
         d.GetComponent<Button>().enabled = true;
         d.GetComponent<SVGImage>().color = defaultColorButtons;
+        PopupButton.enabled = true;
     }
     /// <summary>
     /// Butonlarýn enable deðiþkenini false yapar bu sayede bir daha seçim yapýlamaz.
@@ -422,6 +441,7 @@ public class GameController : MonoBehaviour
         b.GetComponent<Button>().enabled = false;
         c.GetComponent<Button>().enabled = false;
         d.GetComponent<Button>().enabled = false;
+        PopupButton.enabled = false;
     }
 
     private void ToWhiteAnswerChildText(GameObject x)
@@ -446,5 +466,19 @@ public class GameController : MonoBehaviour
             new Color(jokerController.cifteSans.GetComponent<Image>().color.r, jokerController.cifteSans.GetComponent<Image>().color.g, jokerController.cifteSans.GetComponent<Image>().color.b, 1f); // Butonun saydamlýðýný arttýrýr.
         Gift.SetActive(true);
         Gift.GetComponent<Animator>().SetTrigger("play");
+    }
+
+    public void PopUpOpenClose(bool value)
+    {
+        if(value)
+        {
+            PopupScreen.SetActive(true);
+            slider.isGoing = false;
+        }
+        else
+        {
+            PopupScreen.SetActive(false);
+            slider.isGoing = true;
+        }
     }
 }

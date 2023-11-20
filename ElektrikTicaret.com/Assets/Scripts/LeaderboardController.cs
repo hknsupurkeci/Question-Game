@@ -16,15 +16,6 @@ public class LeaderboardController : MonoBehaviour
 
     void Start()
     {
-        //string a = "";
-        //for (int i = 0; i < 5; i++)
-        //{
-        //    User user = new User();
-        //    a += "a";
-        //    user.Name = a;
-        //    user.Score = Random.Range(0, 5000);
-        //    leaderboard.kullaniciBilgileri.Add(user);
-        //}
         int x = 0;
         leaderboard.SortLeaderboard();
         if(leaderboard.kullaniciBilgileri.Count <= 10)
